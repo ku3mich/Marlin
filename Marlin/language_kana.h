@@ -36,7 +36,7 @@
 #define DISPLAY_CHARSET_ISO10646_KANA
 
 // 片仮名表示定義
-#define WELCOME_MSG                         MACHINE_NAME " ready."
+#define WELCOME_MSG                         MACHINE_NAME " "
 #define MSG_SD_INSERTED                     "\xb6\xb0\xc4\xde\xb6\xde\xbf\xb3\xc6\xad\xb3\xbb\xda\xcf\xbc\xc0" // "ｶｰﾄﾞｶﾞｿｳﾆｭｳｻﾚﾏｼﾀ" ("Card inserted")
 #define MSG_SD_REMOVED                      "\xb6\xb0\xc4\xde\xb6\xde\xb1\xd8\xcf\xbe\xdd"                     // "ｶｰﾄﾞｶﾞｱﾘﾏｾﾝ" ("Card removed")
 #define MSG_LCD_ENDSTOPS                    "Endstops"                                                         // Max length 8 characters

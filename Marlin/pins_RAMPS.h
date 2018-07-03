@@ -110,10 +110,10 @@
 #define E0_ENABLE_PIN      24
 #define E0_CS_PIN          42
 
-#define E1_STEP_PIN        36
-#define E1_DIR_PIN         34
-#define E1_ENABLE_PIN      30
-#define E1_CS_PIN          44
+//#define E1_STEP_PIN        36
+//#define E1_DIR_PIN         34
+//#define E1_ENABLE_PIN      30
+//#define E1_CS_PIN          44
 
 //
 // Temperature Sensors
@@ -149,6 +149,8 @@
 //
 // Heaters / Fans
 //
+#define FAN2_PIN    -1// 44
+#define KosselFAN2_PIN 44
 #ifndef MOSFET_D_PIN
   #define MOSFET_D_PIN  -1
 #endif
@@ -167,6 +169,7 @@
 #if ENABLED(IS_RAMPS_EFB)                      // Hotend, Fan, Bed
   #define FAN_PIN        RAMPS_D9_PIN
   #define HEATER_BED_PIN RAMPS_D8_PIN
+
 #elif ENABLED(IS_RAMPS_EEF)                    // Hotend, Hotend, Fan
   #define HEATER_1_PIN   RAMPS_D9_PIN
   #define FAN_PIN        RAMPS_D8_PIN
@@ -220,7 +223,7 @@
     #define LCD_PINS_ENABLE 42
     #define LCD_PINS_D4 65
     #define LCD_PINS_D5 66
-    #define LCD_PINS_D6 44
+    #define LCD_PINS_D6 57
     #define LCD_PINS_D7 64
   #else
     #define LCD_PINS_RS 16
@@ -280,7 +283,7 @@
       #define BEEPER_PIN       33
 
       // Pins for DOGM SPI LCD Support
-      #define DOGLCD_A0        44
+      #define DOGLCD_A0        23
       #define DOGLCD_CS        45
       #define LCD_SCREEN_ROT_180
 
@@ -303,14 +306,14 @@
       #define SD_DETECT_PIN 49
       #define LCD_SDSS 53
       #define KILL_PIN 41
-      #define BEEPER_PIN 23
+      #define BEEPER_PIN 33
       #define DOGLCD_CS 29
       #define DOGLCD_A0 27
-      #define LCD_BACKLIGHT_PIN 33
+      #define LCD_BACKLIGHT_PIN 67
     #elif ENABLED(MINIPANEL)
-      #define BEEPER_PIN 42
+      #define BEEPER_PIN 33
       // Pins for DOGM SPI LCD Support
-      #define DOGLCD_A0  44
+      #define DOGLCD_A0  42
       #define DOGLCD_CS  66
       #define LCD_BACKLIGHT_PIN 65 // backlight LED on A11/D65
       #define SDSS   53

@@ -38,7 +38,7 @@
 // This translation can be improved by using the full charset of unicode codeblock U+30A0 to U+30FF.
 
 // 片仮名表示定義
-#define WELCOME_MSG                         MACHINE_NAME " ready."
+#define WELCOME_MSG                         MACHINE_NAME " "
 #define MSG_SD_INSERTED                     "カードガソウニュウサレマシタ"        // "Card inserted"
 #define MSG_SD_REMOVED                      "カードガアリマセン"               // "Card removed"
 #define MSG_LCD_ENDSTOPS                    "エンドストップ"                  // "Endstops" // Max length 8 characters

@@ -102,7 +102,7 @@
   /* nothing here yet */
 
 // Common serial messages
-#define MSG_MARLIN "Marlin"
+#define MSG_MARLIN "Anycubic"
 
 // Serial Console Messages (do not translate those!)
 

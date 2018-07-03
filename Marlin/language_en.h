@@ -31,7 +31,7 @@
 #define LANGUAGE_EN_H
 
 #ifndef WELCOME_MSG
-  #define WELCOME_MSG                         MACHINE_NAME " ready."
+  #define WELCOME_MSG                         MACHINE_NAME " "
 #endif
 #ifndef MSG_SD_INSERTED
   #define MSG_SD_INSERTED                     "Card inserted"
