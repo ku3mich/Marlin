@@ -30,6 +30,7 @@
 
 #define IS_RAMPS_EFB
 
+#define FAN1_PIN             7
 #define FAN2_PIN             44
 #define ORIG_E0_AUTO_FAN_PIN 44
 
