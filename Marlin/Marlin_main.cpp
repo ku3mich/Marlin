@@ -14194,7 +14194,6 @@ void idle(
   #endif  // MAX7219_DEBUG
 
   lcd_update();
-  Fan2Scan();
   host_keepalive();
 
   #if ENABLED(AUTO_REPORT_TEMPERATURES) && (HAS_TEMP_HOTEND || HAS_TEMP_BED)
