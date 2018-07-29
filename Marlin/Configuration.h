@@ -513,10 +513,12 @@
   // NOTE NB all values for DELTA_* values MUST be floating point, so always have a decimal point in them
 
   // Center-to-center distance of the holes in the diagonal push rods.
-  #define DELTA_DIAGONAL_ROD 268 // mm
+  #define DELTA_DIAGONAL_ROD 282.487 // 268 // mm
+
+  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.172, 0.429, -0.601 }
 
   // Horizontal offset from middle of printer to smooth rod center.
-  #define DELTA_SMOOTH_ROD_OFFSET 185.0 // mm // defaut 188 and by instruction should be changed to 187
+  #define DELTA_SMOOTH_ROD_OFFSET 187.0 // mm // defaut 188 and by instruction should be changed to 187
 
   // Horizontal offset of the universal joints on the end effector.
   #define DELTA_EFFECTOR_OFFSET 31.0 // mm
@@ -535,7 +537,7 @@
   // See http://minow.blogspot.com/index.html#4918805519571907051
   // If needed, adjust the X, Y, Z calibration coordinates
   // in ultralcd.cpp@lcd_delta_calibrate_menu()
-  //#define DELTA_CALIBRATION_MENU
+  #define DELTA_CALIBRATION_MENU
 
   // After homing move down to a height where XY movement is unconstrained
   #define DELTA_HOME_TO_SAFE_ZONE
