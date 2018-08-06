@@ -516,9 +516,9 @@
   // NOTE NB all values for DELTA_* values MUST be floating point, so always have a decimal point in them
 
   // Center-to-center distance of the holes in the diagonal push rods.
-  #define DELTA_DIAGONAL_ROD 266.75 // 268 // mm
+  #define DELTA_DIAGONAL_ROD 269.18 // 268 // mm
 
-  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.54, 0.54, -1.08 }
+  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.58, 0.23, -0.81 } // { 0.54, 0.54, -1.08 }
 
   // Horizontal offset from middle of printer to smooth rod center.
   #define DELTA_SMOOTH_ROD_OFFSET 187.0 // mm // defaut 188 and by instruction should be changed to 187
@@ -690,10 +690,10 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-#define DEFAULT_XJERK                 10.0
-#define DEFAULT_YJERK                 10.0
-#define DEFAULT_ZJERK                 10.0 // Must be same as XY for delta
-#define DEFAULT_EJERK                 10.0
+#define DEFAULT_XJERK                 5.0
+#define DEFAULT_YJERK                 5.0
+#define DEFAULT_ZJERK                 5.0 // Must be same as XY for delta
+#define DEFAULT_EJERK                 25.0
 
 /**
  * S-Curve Acceleration
@@ -740,7 +740,7 @@
  * disastrous consequences. Use with caution and do your homework.
  *
  */
-//#define Z_MIN_PROBE_ENDSTOP
+#define Z_MIN_PROBE_ENDSTOP
 
 /**
  * Probe Type
