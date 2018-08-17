@@ -515,9 +515,9 @@
   // NOTE NB all values for DELTA_* values MUST be floating point, so always have a decimal point in them
 
   // Center-to-center distance of the holes in the diagonal push rods.
-  #define DELTA_DIAGONAL_ROD 269.18 // 268 // mm
+  #define DELTA_DIAGONAL_ROD 269.531 // 268 // mm
 
-  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.58, 0.23, -0.81 } // { 0.54, 0.54, -1.08 }
+  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.58, 0.581, -1.116 } 
 
   // Horizontal offset from middle of printer to smooth rod center.
   #define DELTA_SMOOTH_ROD_OFFSET 187.0 // mm // defaut 188 and by instruction should be changed to 187
@@ -1320,13 +1320,13 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
+#define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
-  #define NOZZLE_PARK_XY_FEEDRATE 100   // X and Y axes feedrate in mm/s (also used for delta printers Z axis)
-  #define NOZZLE_PARK_Z_FEEDRATE 5      // Z axis feedrate in mm/s (not used for delta printers)
+  #define NOZZLE_PARK_POINT { 0, 0, 100 }
+  #define NOZZLE_PARK_XY_FEEDRATE 3000   // X and Y axes feedrate in mm/s (also used for delta printers Z axis)
+  #define NOZZLE_PARK_Z_FEEDRATE 3000      // Z axis feedrate in mm/s (not used for delta printers)
 #endif
 
 /**
