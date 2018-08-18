@@ -460,7 +460,7 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 200
+#define EXTRUDE_MAXLENGTH 1000
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -511,13 +511,14 @@
   
   // Convert feedrates to apply to the Effector instead of the Carriages
   #define DELTA_FEEDRATE_SCALING
-
+  #define DELTA_SEGMENTS_PER_SECOND 120
+  
   // NOTE NB all values for DELTA_* values MUST be floating point, so always have a decimal point in them
 
   // Center-to-center distance of the holes in the diagonal push rods.
-  #define DELTA_DIAGONAL_ROD 269.531 // 268 // mm
+  #define DELTA_DIAGONAL_ROD 267.792 // 268 // mm
 
-  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.58, 0.581, -1.116 } 
+  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { -0.395, 0.552, -0.158 } 
 
   // Horizontal offset from middle of printer to smooth rod center.
   #define DELTA_SMOOTH_ROD_OFFSET 187.0 // mm // defaut 188 and by instruction should be changed to 187
@@ -659,7 +660,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 200, 200 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 300, 200 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -667,7 +668,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000,3000,3000,3000 }
+#define DEFAULT_MAX_ACCELERATION      { 2000,2000,2000,2000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -677,9 +678,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION          1800    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  1800    // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   1800    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk (mm/s)
@@ -1324,9 +1325,9 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z }
-  #define NOZZLE_PARK_POINT { 0, 0, 100 }
-  #define NOZZLE_PARK_XY_FEEDRATE 3000   // X and Y axes feedrate in mm/s (also used for delta printers Z axis)
-  #define NOZZLE_PARK_Z_FEEDRATE 3000      // Z axis feedrate in mm/s (not used for delta printers)
+  #define NOZZLE_PARK_POINT { 0, 0, 10 }
+  #define NOZZLE_PARK_XY_FEEDRATE 40   // X and Y axes feedrate in mm/s (also used for delta printers Z axis)
+  #define NOZZLE_PARK_Z_FEEDRATE 40      // Z axis feedrate in mm/s (not used for delta printers)
 #endif
 
 /**
