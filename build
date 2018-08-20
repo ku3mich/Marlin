@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+/var/opt/arduino-1.8.5/arduino-builder \
+    -compile \
+    -logger=human \
+    -hardware /var/opt/arduino-1.8.5/hardware \
+    -hardware /home/i/.arduino15/packages \
+    -tools /var/opt/arduino-1.8.5/tools-builder \
+    -tools /var/opt/arduino-1.8.5/hardware/tools/avr \
+    -tools /home/i/.arduino15/packages \
+    -built-in-libraries /var/opt/arduino-1.8.5/libraries \
+    -libraries /home/i/arduino-sketches/libraries \
+    -fqbn=arduino:avr:mega:cpu=atmega2560 \
+    -ide-version=10805 \
+    -build-path /tmp/arduino_build_152608 \
+    -warnings=all \
+    -build-cache /tmp/arduino_cache_980282 \
+    -prefs=build.warn_data_percentage=75 \
+    -prefs=runtime.tools.avr-gcc.path=/home/i/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2 \
+    -prefs=runtime.tools.avrdude.path=/home/i/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino9 \
+    -prefs=runtime.tools.arduinoOTA.path=/home/i/.arduino15/packages/arduino/tools/arduinoOTA/1.1.1 \
+    -verbose \
+    /usr/src/Marlin/Marlin/Marlin.ino
