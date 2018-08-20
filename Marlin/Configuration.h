@@ -1147,7 +1147,9 @@
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MBL_Z_STEP 0.05    // Step size while manually probing Z axis.
-  #define PROBE_MANUALLY_STEP MBL_Z_STEP
+  #if !defined(PROBE_MANUALLY_STEP)
+    #define PROBE_MANUALLY_STEP MBL_Z_STEP
+  #endif
   #define LCD_PROBE_Z_RANGE 10 // Z Range centered on Z_MIN_POS for LCD Z adjustment
 #endif
 
