@@ -2279,27 +2279,27 @@ bool Planner::_populate_block(block_t * const block, bool split_move,
     /**
      * Adapted from Průša MKS firmware
      * https://github.com/prusa3d/Prusa-Firmware
-     *
-     * Start with a safe speed (from which the machine may halt to stop immediately).
      */
+    const float nominal_speed = SQRT(block->nominal_speed_sqr);
 
     // Exit speed limited by a jerk to full halt of a previous last segment
     static float previous_safe_speed;
 
-    const float nominal_speed = SQRT(block->nominal_speed_sqr);
+    // Start with a safe speed (from which the machine may halt to stop immediately).
     float safe_speed = nominal_speed;
 
     uint8_t limited = 0;
     LOOP_XYZE(i) {
-      const float jerk = ABS(current_speed[i]), maxj = max_jerk[i];
-      if (jerk > maxj) {
-        if (limited) {
-          const float mjerk = maxj * nominal_speed;
-          if (jerk * safe_speed > mjerk) safe_speed = mjerk / jerk;
+      const float jerk = ABS(current_speed[i]),   // cs : Starting from zero, change in speed for this axis
+                  maxj = max_jerk[i];             // mj : The max jerk setting for this axis
+      if (jerk > maxj) {                          // cs > mj : New current speed too fast?
+        if (limited) {                            // limited already?
+          const float mjerk = nominal_speed * maxj; // ns*mj
+          if (jerk * safe_speed > mjerk) safe_speed = mjerk / jerk; // ns*mj/cs
         }
         else {
-          ++limited;
-          safe_speed = maxj;
+          safe_speed *= maxj / jerk;              // Initial limit: ns*mj/cs
+          ++limited;                              // Initially limited
         }
       }
     }
@@ -2525,9 +2525,14 @@ void Planner::_set_position_mm(const float &a, const float &b, const float &c, c
   #if ENABLED(DISTINCT_E_FACTORS)
     last_extruder = active_extruder;
   #endif
-  position[A_AXIS] = LROUND(a * axis_steps_per_mm[A_AXIS]),
-  position[B_AXIS] = LROUND(b * axis_steps_per_mm[B_AXIS]),
-  position[C_AXIS] = LROUND(c * axis_steps_per_mm[C_AXIS]),
+  position[A_AXIS] = LROUND(a * axis_steps_per_mm[A_AXIS]);
+  position[B_AXIS] = LROUND(b * axis_steps_per_mm[B_AXIS]);
+  position[C_AXIS] = LROUND(axis_steps_per_mm[C_AXIS] * (c + (
+    #if !IS_KINEMATIC && ENABLED(AUTO_BED_LEVELING_UBL)
+      leveling_active ? ubl.get_z_correction(a, b) :
+    #endif
+    0
+  )));
   position[E_AXIS] = LROUND(e * axis_steps_per_mm[_EINDEX]);
   #if HAS_POSITION_FLOAT
     position_float[A_AXIS] = a;
@@ -2569,14 +2574,17 @@ void Planner::set_position_mm(const AxisEnum axis, const float &v) {
   #else
     const uint8_t axis_index = axis;
   #endif
-  position[axis] = LROUND(v * axis_steps_per_mm[axis_index]);
+  position[axis] = LROUND(axis_steps_per_mm[axis_index] * (v + (
+    #if ENABLED(AUTO_BED_LEVELING_UBL)
+      axis == Z_AXIS && leveling_active ? ubl.get_z_correction(current_position[X_AXIS], current_position[Y_AXIS]) :
+    #endif
+    0)
+  ));
   #if HAS_POSITION_FLOAT
     position_float[axis] = v;
   #endif
-  if (has_blocks_queued()) {
-    //previous_speed[axis] = 0.0;
+  if (has_blocks_queued())
     buffer_sync_block();
-  }
   else
     stepper.set_position(axis, position[axis]);
 }
