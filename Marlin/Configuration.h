@@ -682,7 +682,7 @@
  */
 
 #define DEFAULT_XYZ_STEPS_PER_UNIT 80
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_XYZ_STEPS_PER_UNIT, 96 }  // default steps per unit for Kossel (GT2, 20 tooth)
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_XYZ_STEPS_PER_UNIT, 96 }  // default steps per unit for Kossel (GT2, 20 tooth) // changed to 93.3
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -697,7 +697,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 2000,2000,2000,2000 }
+#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 2000, 2000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
