@@ -134,7 +134,7 @@
 #endif
 
 // Show extra position information in M114
-//#define M114_DETAIL
+#define M114_DETAIL
 
 // Show Temperature ADC value
 // Enable for M105 to include ADC values read from temperature sensors.
@@ -462,7 +462,7 @@
  * vibration and surface artifacts. The algorithm adapts to provide the best possible step smoothing at the
  * lowest stepping frequencies.
  */
-//#define ADAPTIVE_STEP_SMOOTHING
+#define ADAPTIVE_STEP_SMOOTHING
 
 // Microstep setting (Only functional when stepper driver microstep pins are connected to MCU.
 #define MICROSTEP_MODES { 16, 16, 16, 16, 16 } // [1,2,4,8,16]
@@ -526,10 +526,10 @@
 // @section lcd
 
 // Include a page of printer information in the LCD Main Menu
-//#define LCD_INFO_MENU
+#define LCD_INFO_MENU
 
 // Scroll a longer status message into view
-//#define STATUS_MESSAGE_SCROLLING
+#define STATUS_MESSAGE_SCROLLING
 
 // On the Info Screen, display XY with one decimal place when possible
 //#define LCD_DECIMAL_SMALL_XY
@@ -801,12 +801,12 @@
 #if ENABLED(ARC_SUPPORT)
   #define MM_PER_ARC_SEGMENT  1   // Length of each arc segment
   #define N_ARC_CORRECTION   25   // Number of intertpolated segments between corrections
-  //#define ARC_P_CIRCLES         // Enable the 'P' parameter to specify complete circles
-  //#define CNC_WORKSPACE_PLANES  // Allow G2/G3 to operate in XY, ZX, or YZ planes
+  #define ARC_P_CIRCLES         // Enable the 'P' parameter to specify complete circles
+  #define CNC_WORKSPACE_PLANES  // Allow G2/G3 to operate in XY, ZX, or YZ planes
 #endif
 
 // Support for G5 with XYZE destination and IJPQ offsets. Requires ~2666 bytes.
-//#define BEZIER_CURVE_SUPPORT
+#define BEZIER_CURVE_SUPPORT
 
 // G38.2 and G38.3 Probe Target
 // Set MULTIPLE_PROBING if you want G38 to double touch
@@ -947,11 +947,11 @@
  * Note that M207 / M208 / M209 settings are saved to EEPROM.
  *
  */
-//#define FWRETRACT  // ONLY PARTIALLY TESTED
+#define FWRETRACT  // ONLY PARTIALLY TESTED
 #if ENABLED(FWRETRACT)
   #define MIN_AUTORETRACT 0.1             // When auto-retract is on, convert E moves of this length and over
   #define MAX_AUTORETRACT 10.0            // Upper limit for auto-retract conversion
-  #define RETRACT_LENGTH 3                // Default retract length (positive mm)
+  #define RETRACT_LENGTH 6                // Default retract length (positive mm)
   #define RETRACT_LENGTH_SWAP 13          // Default swap retract length (positive mm), for extruder change
   #define RETRACT_FEEDRATE 45             // Default feedrate for retracting (mm/s)
   #define RETRACT_ZLIFT 0                 // Default retract Z-lift
