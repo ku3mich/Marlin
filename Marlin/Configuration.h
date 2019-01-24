@@ -959,7 +959,7 @@
 #define Z_MIN_POS -5
 #define X_MAX_POS DELTA_PRINTABLE_RADIUS
 #define Y_MAX_POS DELTA_PRINTABLE_RADIUS
-#define Z_MAX_POS MANUAL_Z_HOME_POS
+#define Z_MAX_POS 300.0
 
 /**
  * Software Endstops
@@ -1208,7 +1208,7 @@
 // For DELTA this is the top-center of the Cartesian print volume.
 //#define MANUAL_X_HOME_POS 0
 //#define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 284.6 // Distance between the nozzle to printbed after homing
+//#define MANUAL_Z_HOME_POS 284.6 // Distance between the nozzle to printbed after homing
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
 //
