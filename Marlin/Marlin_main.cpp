@@ -601,13 +601,7 @@ uint8_t target_extruder;
 #endif
 
 #if HAS_POWER_SWITCH
-  bool powersupply_on = (
-    #if ENABLED(PS_DEFAULT_OFF)
-      false
-    #else
-      true
-    #endif
-  );
+  bool powersupply_on;
   #if ENABLED(AUTO_POWER_CONTROL)
     #define PSU_ON()  powerManager.power_on()
     #define PSU_OFF() powerManager.power_off()
@@ -943,9 +937,9 @@ void setup_powerhold() {
   #endif
   #if HAS_POWER_SWITCH
     #if ENABLED(PS_DEFAULT_OFF)
-      PSU_OFF();
+      powersupply_on = true;  PSU_OFF();
     #else
-      PSU_ON();
+      powersupply_on = false; PSU_ON();
     #endif
   #endif
 }
@@ -1383,7 +1377,7 @@ bool get_target_extruder_from_command(const uint16_t code) {
       }
     #elif ENABLED(DELTA)
       soft_endstop_min[axis] = base_min_pos(axis);
-      soft_endstop_max[axis] = axis == Z_AXIS ? delta_height 
+      soft_endstop_max[axis] = axis == Z_AXIS ? delta_height
       #if HAS_BED_PROBE
         - zprobe_zoffset
       #endif
@@ -1521,7 +1515,7 @@ static void set_axis_is_at_home(const AxisEnum axis) {
       - zprobe_zoffset
     #endif
     : base_home_pos(axis));
-  #else  
+  #else
     current_position[axis] = base_home_pos(axis);
   #endif
 
@@ -4067,7 +4061,11 @@ inline void gcode_G4() {
     #endif
 
     // Move all carriages together linearly until an endstop is hit.
-    current_position[X_AXIS] = current_position[Y_AXIS] = current_position[Z_AXIS] = (delta_height + 10);
+    current_position[X_AXIS] = current_position[Y_AXIS] = current_position[Z_AXIS] = (delta_height + 10
+      #if HAS_BED_PROBE
+        - zprobe_zoffset
+      #endif
+    );
     feedrate_mm_s = homing_feedrate(X_AXIS);
     buffer_line_to_current_position();
     planner.synchronize();
@@ -10069,7 +10067,7 @@ inline void gcode_M226() {
         NOLESS(thermalManager.lpq_len, 0);
       #endif
 
-      thermalManager.updatePID();
+      thermalManager.update_pid();
       SERIAL_ECHO_START();
       #if ENABLED(PID_PARAMS_PER_HOTEND)
         SERIAL_ECHOPAIR(" e:", e); // specify extruder in serial output
@@ -10215,7 +10213,7 @@ inline void gcode_M303() {
       KEEPALIVE_STATE(NOT_BUSY);
     #endif
 
-    thermalManager.PID_autotune(temp, e, c, u);
+    thermalManager.pid_autotune(temp, e, c, u);
 
     #if DISABLED(BUSY_WHILE_HEATING)
       KEEPALIVE_STATE(IN_HANDLER);
@@ -14602,7 +14600,7 @@ void prepare_move_to_destination() {
 
 #if ENABLED(TEMP_STAT_LEDS)
 
-  static bool red_led = false;
+  static uint8_t red_led = -1;  // Invalid value to force leds initializzation on startup
   static millis_t next_status_led_update_ms = 0;
 
   void handle_status_leds(void) {
@@ -14610,20 +14608,18 @@ void prepare_move_to_destination() {
       next_status_led_update_ms += 500; // Update every 0.5s
       float max_temp = 0.0;
       #if HAS_HEATED_BED
-        max_temp = MAX3(max_temp, thermalManager.degTargetBed(), thermalManager.degBed());
+        max_temp = MAX(thermalManager.degTargetBed(), thermalManager.degBed());
       #endif
       HOTEND_LOOP()
         max_temp = MAX3(max_temp, thermalManager.degHotend(e), thermalManager.degTargetHotend(e));
-      const bool new_led = (max_temp > 55.0) ? true : (max_temp < 54.0) ? false : red_led;
+      const uint8_t new_led = (max_temp > 55.0) ? HIGH : (max_temp < 54.0 || red_led == -1) ? LOW : red_led;
       if (new_led != red_led) {
         red_led = new_led;
         #if PIN_EXISTS(STAT_LED_RED)
-          WRITE(STAT_LED_RED_PIN, new_led ? HIGH : LOW);
-          #if PIN_EXISTS(STAT_LED_BLUE)
-            WRITE(STAT_LED_BLUE_PIN, new_led ? LOW : HIGH);
-          #endif
-        #else
-          WRITE(STAT_LED_BLUE_PIN, new_led ? HIGH : LOW);
+          WRITE(STAT_LED_RED_PIN, new_led);
+        #endif
+        #if PIN_EXISTS(STAT_LED_BLUE)
+          WRITE(STAT_LED_BLUE_PIN, !new_led);
         #endif
       }
     }
