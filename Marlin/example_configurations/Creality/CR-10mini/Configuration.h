@@ -620,7 +620,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 79.60, 80, 400, 229.4 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 79.60, 80, 400, 95 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1123,6 +1123,7 @@
 
 #if ENABLED(LEVEL_BED_CORNERS)
   #define LEVEL_CORNERS_INSET 30    // (mm) An inset for corner leveling
+  #define LEVEL_CORNERS_Z_HOP  4.0  // (mm) Move nozzle up before moving between corners
   //#define LEVEL_CENTER_TOO        // Move to the center after the last corner
 #endif
 
