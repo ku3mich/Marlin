@@ -511,10 +511,10 @@
   // Make delta curves from many straight lines (linear interpolation).
   // This is a trade-off between visible corners (not enough segments)
   // and processor overload (too many expensive sqrt calls).
+  #define DELTA_SEGMENTS_PER_SECOND 120
   
   // Convert feedrates to apply to the Effector instead of the Carriages
   #define DELTA_FEEDRATE_SCALING
-  #define DELTA_SEGMENTS_PER_SECOND 120
   
   // NOTE NB all values for DELTA_* values MUST be floating point, so always have a decimal point in them
 
@@ -722,7 +722,7 @@
 #define DEFAULT_XJERK                 5.0
 #define DEFAULT_YJERK                 5.0
 #define DEFAULT_ZJERK                 5.0 // Must be same as XY for delta
-#define DEFAULT_EJERK                 25.0
+#define DEFAULT_EJERK                 10.0
 
 /**
  * S-Curve Acceleration
@@ -1043,8 +1043,8 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
-#define AUTO_BED_LEVELING_UBL
+#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
 /**
@@ -1069,13 +1069,13 @@
   // For Cartesian machines, instead of dividing moves on mesh boundaries,
   // split up moves into short segments like a Delta. This follows the
   // contours of the bed more closely than edge-to-edge straight moves.
-  #define SEGMENT_LEVELED_MOVES
-  #define LEVELED_SEGMENT_LENGTH 5.0 // (mm) Length of all segments (except the last one)
+  //#define SEGMENT_LEVELED_MOVES
+  //#define LEVELED_SEGMENT_LENGTH 5.0 // (mm) Length of all segments (except the last one)
 
   /**
    * Enable the G26 Mesh Validation Pattern tool.
    */
-  //#define G26_MESH_VALIDATION
+  #define G26_MESH_VALIDATION
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.3  // (mm) Default layer height for the G26 Mesh Validation Tool.
@@ -1091,14 +1091,7 @@
   #define GRID_MAX_POINTS_X 5
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
-  // Set the boundaries for probing (where the probe can reach).
-  //#define DELTA_PROBEABLE_RADIUS (DELTA_PRINTABLE_RADIUS - 30)
-  //#define LEFT_PROBE_BED_POSITION -(DELTA_PROBEABLE_RADIUS)
-  //#define RIGHT_PROBE_BED_POSITION DELTA_PROBEABLE_RADIUS
-  //#define FRONT_PROBE_BED_POSITION -(DELTA_PROBEABLE_RADIUS)
-  //#define BACK_PROBE_BED_POSITION DELTA_PROBEABLE_RADIUS
-
-  // The Z probe minimum outer margin (to validate G29 parameters).
+  // Certain types of probes need to stay away from edges
   #define MIN_PROBE_EDGE 30
 
   // Probe along the Y axis, advancing X after each column
@@ -1114,7 +1107,7 @@
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
     //
-    //#define ABL_BILINEAR_SUBDIVISION
+    #define ABL_BILINEAR_SUBDIVISION
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
       #define BILINEAR_SUBDIVISIONS 4
@@ -1217,15 +1210,15 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-#define Z_SAFE_HOMING
+//#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
   #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
 #endif
 
-// Delta only homes to Z X=-1.3 Y=-0.6
-#define HOMING_FEEDRATE_Z  (60*60)
+// Delta only homes to Z 
+#define HOMING_FEEDRATE_Z  (120*60)
 
 // @section calibrate
 
