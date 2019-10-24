@@ -972,13 +972,12 @@ void lcd_quick_feedback(const bool clear_buttons) {
     #if ENABLED(BLTOUCH_LCD_VOLTAGE_MENU)
       void bltouch_report() {
         SERIAL_ECHOLNPAIR("EEPROM Last BLTouch Mode - ", (int)bltouch_last_written_mode);
-        SERIAL_ECHOLNPGM("Configuration BLTouch Mode - "
+        SERIAL_ECHOPGM("Configuration BLTouch Mode - ");
           #if ENABLED(BLTOUCH_SET_5V_MODE)
-            "5V"
+            SERIAL_ECHOLNPGM("5V");
           #else
-            "OD"
+            SERIAL_ECHOLNPGM("OD");
           #endif
-        );
         char mess[21];
         strcpy_P(mess, PSTR("BLTouch Mode - "));
         strcpy_P(&mess[15], bltouch_last_written_mode ? PSTR("5V") : PSTR("OD"));
@@ -987,6 +986,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
       }
     #endif
 
+    void bltouch_menu() {
     void bltouch_menu() {
       START_MENU();
       MENU_BACK(MSG_MAIN);
