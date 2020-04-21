@@ -11,7 +11,6 @@ Marlin is an optimized firmware for [RepRap 3D printers](http://reprap.org/) bas
 
 This 1.1.x Release Branch contains the latest tagged version of Marlin (currently 1.1.8 – December 2017).
 
-Marlin 1.1 represents an evolutionary leap over Marlin 1.0. It is the result of over two years of effort by several volunteers around the world who have paid meticulous and sometimes obsessive attention to every detail. We've focused on code quality, performance, stability, and overall user experience. Several new features have been added, many of which require no extra hardware.
 
 ## Marlin 1.0.x
 
