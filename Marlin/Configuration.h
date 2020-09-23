@@ -109,7 +109,7 @@
   #define DELTA_ENDSTOP_ADJ { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
 
   // Horizontal distance bridged by diagonal push rods when effector is centered.
-  #define DELTA_RADIUS 83.35              // (mm) Get this value from G33 auto calibrate
+  #define DELTA_RADIUS 135.0              // (mm) Get this value from G33 auto calibrate
 
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
@@ -118,7 +118,14 @@
 
   // Delta radius and diagonal rod adjustments (mm)
   //#define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }
-  //#define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.0, 0.0, 0.0 }
+  
+  /*
+  278,2 = x
+  278.8 = y
+  279 = z
+  
+  */
+  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { -0.8, -0.2, 0.0 }
 
 #endif
 
@@ -968,6 +975,10 @@
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
 #define BLTOUCH
+
+// increase bltouch delays
+#define BLTOUCH_DEPLOY_DELAY   1250
+#define BLTOUCH_STOW_DELAY     1250
 
 /**
  * Pressure sensor with a BLTouch-like interface
