@@ -977,8 +977,9 @@
 #define BLTOUCH
 
 // increase bltouch delays
-#define BLTOUCH_DEPLOY_DELAY   1250
-#define BLTOUCH_STOW_DELAY     1250
+#define BLTOUCH_DEPLOY_DELAY   350
+#define BLTOUCH_STOW_DELAY     350
+#define BLTOUCH_RESET_DELAY    250
 
 /**
  * Pressure sensor with a BLTouch-like interface
@@ -1069,16 +1070,16 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 0
+#define PROBING_MARGIN 5
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_SPEED (80*60)
+#define XY_PROBE_SPEED (20*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST XY_PROBE_SPEED
 
 // Feedrate (mm/min) for the "accurate" probe of each point
-#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 6)
+#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 4)
 
 /**
  * Multiple Probing
@@ -1089,8 +1090,8 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-//#define MULTIPLE_PROBING 2
-//#define EXTRA_PROBING    1
+#define MULTIPLE_PROBING 2
+#define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1106,7 +1107,7 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_DEPLOY_PROBE   15 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
 #define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
 #define Z_AFTER_PROBING           125 // Z position after probing is done
@@ -1472,7 +1473,7 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_XY (90*60)
+#define HOMING_FEEDRATE_XY (28*60)
 #define HOMING_FEEDRATE_Z  HOMING_FEEDRATE_XY
 
 // Validate that endstops are triggered on homing moves
@@ -1588,7 +1589,7 @@
 
 #define PREHEAT_2_LABEL       "CoPET"
 #define PREHEAT_2_TEMP_HOTEND 220
-#define PREHEAT_2_TEMP_BED    60
+#define PREHEAT_2_TEMP_BED     60
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
 /**
