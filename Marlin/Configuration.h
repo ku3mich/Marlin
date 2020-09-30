@@ -534,14 +534,14 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 265
-#define HEATER_1_MAXTEMP 265
-#define HEATER_2_MAXTEMP 265
-#define HEATER_3_MAXTEMP 265
-#define HEATER_4_MAXTEMP 265
-#define HEATER_5_MAXTEMP 265
-#define HEATER_6_MAXTEMP 265
-#define HEATER_7_MAXTEMP 265
+#define HEATER_0_MAXTEMP (265+15)
+#define HEATER_1_MAXTEMP (265+15)
+#define HEATER_2_MAXTEMP (265+15)
+#define HEATER_3_MAXTEMP (265+15)
+#define HEATER_4_MAXTEMP (265+15)
+#define HEATER_5_MAXTEMP (265+15)
+#define HEATER_6_MAXTEMP (265+15)
+#define HEATER_7_MAXTEMP (265+15)
 #define BED_MAXTEMP      120
 
 //===========================================================================
@@ -977,9 +977,9 @@
 #define BLTOUCH
 
 // increase bltouch delays
-#define BLTOUCH_DEPLOY_DELAY   350
-#define BLTOUCH_STOW_DELAY     350
-#define BLTOUCH_RESET_DELAY    250
+#define BLTOUCH_DEPLOY_DELAY   450
+#define BLTOUCH_STOW_DELAY     450
+#define BLTOUCH_RESET_DELAY    350
 
 /**
  * Pressure sensor with a BLTouch-like interface
@@ -1361,7 +1361,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 5
+  #define GRID_MAX_POINTS_X 10
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
