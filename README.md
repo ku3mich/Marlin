@@ -38,15 +38,10 @@ To build Marlin 2.0 you'll need [Arduino IDE 1.8.8 or newer](https://www.arduino
   [SAMD51P20A](https://www.adafruit.com/product/4064)|ARM® Cortex-M4|Adafruit Grand Central M4
   [Teensy 3.5](https://www.pjrc.com/store/teensy35.html)|ARM® Cortex-M4|
   [Teensy 3.6](https://www.pjrc.com/store/teensy36.html)|ARM® Cortex-M4|
+  [Teensy 4.0](https://www.pjrc.com/store/teensy40.html)|ARM® Cortex-M7|
+  [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)|ARM® Cortex-M7|
 
 ## Submitting Changes
-
-  #### Teensy 4.0 / 4.1
-
-  boards|processor|speed|flash|sram|logic|fpu
-  ----|---------|-----|-----|----|-----|---
-  [Teensy 4.0](https://www.pjrc.com/store/teensy40.html)|[IMXRT1062](https://www.mouser.com/new/nxp-semiconductors/nxp-imx-rt1060-crossover-processor/) ARM-Cortex M7|600MHz|1M|2M|3.3V|yes
-  [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)|[IMXRT1062](https://www.mouser.com/new/nxp-semiconductors/nxp-imx-rt1060-crossover-processor/) ARM-Cortex M7|600MHz|1M|2M|3.3V|yes
 
 
 ## Marlin Support
