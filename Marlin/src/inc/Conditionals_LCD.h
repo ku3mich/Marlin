@@ -131,6 +131,7 @@
   #define DOGLCD
   #define U8GLIB_ST7920
   #define IS_ULTIPANEL 1
+  #define LCD_HEIGHT 4
 
 #elif ENABLED(MKS_12864OLED)
 
