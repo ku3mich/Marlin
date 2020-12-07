@@ -33,7 +33,7 @@
 #elif EXTRUDERS > 2 || E_STEPPERS > 2
   #error "MRR ESPE only supports two E Steppers. Comment out this line to continue."
 #elif HOTENDS > 1
-  #error "MRR ESPE currently supports only one hotend. Comment out this line to continue."
+  #error "MRR ESPE only supports one hotend / E-stepper. Comment out this line to continue."
 #endif
 
 #define BOARD_INFO_NAME      "MRR ESPE"
@@ -52,12 +52,10 @@
 //
 #undef I2S_STEPPER_STREAM
 #define I2S_STEPPER_STREAM
-
-#undef LIN_ADVANCE                                // Currently, I2S stream does not work with linear advance
-
 #define I2S_WS                                26
 #define I2S_BCK                               25
 #define I2S_DATA                              27
+#undef LIN_ADVANCE                                // Currently, I2S stream does not work with linear advance
 
 //
 // Steppers

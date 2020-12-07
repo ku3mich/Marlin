@@ -32,7 +32,7 @@
 #endif
 
 #if EITHER(LCD_SET_PROGRESS_MANUALLY, SD_REPRINT_LAST_SELECTED_FILE)
-  #include "../../lcd/ultralcd.h"
+  #include "../../lcd/marlinui.h"
 #endif
 
 #if ENABLED(POWER_LOSS_RECOVERY)
@@ -95,6 +95,8 @@ void GcodeSuite::M1001() {
   #ifdef SD_FINISHED_RELEASECOMMAND
     queue.inject_P(PSTR(SD_FINISHED_RELEASECOMMAND));
   #endif
+
+  TERN_(EXTENSIBLE_UI, ExtUI::onPrintFinished());
 
   // Re-select the last printed file in the UI
   TERN_(SD_REPRINT_LAST_SELECTED_FILE, ui.reselect_last_file());
