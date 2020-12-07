@@ -283,20 +283,27 @@
 #elif ENABLED(TFT_COLOR_UI)
   #define TFT_BUFFER_SIZE                  14400
 #endif
+// XPT2046 Touch Screen calibration
+#if EITHER(TFT_LVGL_UI, TFT_COLOR_UI)
+  #endif
+#elif ENABLED(TFT_CLASSIC_UI)
+#elif ENABLED(TFT_COLOR_UI)
+  #define TFT_BUFFER_SIZE                  14400
+#endif
 
 // XPT2046 Touch Screen calibration
 #if EITHER(TFT_LVGL_UI, TFT_COLOR_UI)
   #ifndef XPT2046_X_CALIBRATION
-    #define XPT2046_X_CALIBRATION         -17253
+    #define XPT2046_X_CALIBRATION         -11386
   #endif
   #ifndef XPT2046_Y_CALIBRATION
-    #define XPT2046_Y_CALIBRATION          11579
+    #define XPT2046_Y_CALIBRATION           8684
   #endif
   #ifndef XPT2046_X_OFFSET
-    #define XPT2046_X_OFFSET                 514
+    #define XPT2046_X_OFFSET                 339
   #endif
   #ifndef XPT2046_Y_OFFSET
-    #define XPT2046_Y_OFFSET                 -24
+    #define XPT2046_Y_OFFSET                 -18
   #endif
 #elif ENABLED(TFT_CLASSIC_UI)
   #ifndef XPT2046_X_CALIBRATION

@@ -887,7 +887,6 @@ char *creat_title_text() {
 
       SPI_TFT.setWindow(xpos_pixel, y_off * 20 + ypos_pixel, 200, 20); // 200*200
       SPI_TFT.tftio.WriteSequence((uint16_t*)(bmp_public_buf), DEFAULT_VIEW_MAX_SIZE / 20);
-
       y_off++;
     }
     W25QXX.init(SPI_QUARTER_SPEED);
