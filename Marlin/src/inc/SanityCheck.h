@@ -594,9 +594,9 @@
   #elif TX_BUFFER_SIZE && (TX_BUFFER_SIZE < 2 || TX_BUFFER_SIZE > 256 || !IS_POWER_OF_2(TX_BUFFER_SIZE))
     #error "TX_BUFFER_SIZE must be 0 or a power of 2 between 1 and 256."
   #endif
-#elif ANY(SERIAL_XON_XOFF, SERIAL_STATS_MAX_RX_QUEUED, SERIAL_STATS_DROPPED_RX)
-  #error "SERIAL_XON_XOFF and SERIAL_STATS_* features not supported on USB-native AVR devices."
-#endif
+// #elif ANY(SERIAL_XON_XOFF, SERIAL_STATS_MAX_RX_QUEUED, SERIAL_STATS_DROPPED_RX)
+//   #error "SERIAL_XON_XOFF and SERIAL_STATS_* features not supported on USB-native AVR devices."
+// #endif
 
 /**
  * Multiple Stepper Drivers Per Axis
