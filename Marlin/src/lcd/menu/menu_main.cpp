@@ -58,6 +58,10 @@
   #include "../../feature/host_actions.h"
 #endif
 
+#if ENABLED(GCODE_REPEAT_MARKERS)
+  #include "../../feature/repeat.h"
+#endif
+
 void menu_tune();
 void menu_cancelobject();
 void menu_motion();
@@ -93,6 +97,10 @@ void menu_configuration();
   void menu_spindle_laser();
 #endif
 
+#if HAS_MULTI_LANGUAGE
+  void menu_language();
+#endif
+
 extern const char M21_STR[];
 
 void menu_main() {
@@ -118,6 +126,11 @@ void menu_main() {
           GET_TEXT(MSG_STOP_PRINT), (const char *)nullptr, PSTR("?")
         );
       });
+    #endif
+
+    #if ENABLED(GCODE_REPEAT_MARKERS)
+      if (repeat.is_active())
+        ACTION_ITEM(MSG_END_LOOPS, repeat.cancel);
     #endif
 
     SUBMENU(MSG_TUNE, menu_tune);
@@ -170,7 +183,7 @@ void menu_main() {
   }
 
   #if HAS_CUTTER
-    SUBMENU(MSG_CUTTER(MENU), menu_spindle_laser);
+    SUBMENU(MSG_CUTTER(MENU), STICKY_SCREEN(menu_spindle_laser));
   #endif
 
   #if HAS_TEMPERATURE
@@ -314,6 +327,10 @@ void menu_main() {
         #endif
       );
     }
+  #endif
+
+  #if HAS_MULTI_LANGUAGE
+    SUBMENU(LANGUAGE, menu_language);
   #endif
 
   END_MENU();
